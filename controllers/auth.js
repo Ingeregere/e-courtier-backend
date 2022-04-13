@@ -88,3 +88,12 @@ exports.isAdmin = (req, res, next) =>{
     }  
     next()
 }
+
+exports.isAdminAndPorps= (req,res,next)=>{
+    if(req.profile.role !="ADMIN" || req.profile.role !="PROPS"){
+      return res.status(403).json({
+            error:"Vous n'êtes pas l'Administrateur! accès refusé "
+      })
+    }
+    next()
+}
