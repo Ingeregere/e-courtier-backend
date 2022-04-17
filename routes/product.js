@@ -21,6 +21,7 @@ const {
     deletedProduct,
     listProductUnposted,
     listProductDel,
+    viewProduct
 } = require('../controllers/product')
 const { requireSignin, isAuth, isAdmin, isAdminAndPorps } = require('../controllers/auth')
 const { userById } = require('../controllers/user')
@@ -42,6 +43,7 @@ router.get("/product/slide3/:productId", slide3)
 router.put('/product/postedprod/:id/:userId', requireSignin, isAuth, isAdmin, postedProduct)
 router.put('/product/activepro/:id/:userId', requireSignin, isAuth, isAdmin, activeProduct)
 router.put('/product/deletepro/:id/:userId', requireSignin, isAuth, isAdmin, deletedProduct)
+router.put('/product/viewproduct/:id/:userId', requireSignin, isAuth,viewProduct)
 router.get("/productunposted", listProductUnposted)
 router.get("/productdel", listProductDel)
 

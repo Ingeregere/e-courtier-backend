@@ -14,7 +14,7 @@ const CategorySchema = new mongoose.Schema({
     status: {
         type: String,
         enum: ['active','deleted','blocked'],
-        default: 'active', // sinon il ne peut se connecter. Donc si son statut == active il peut se connecter
+        default: 'active', 
         required: true
     }
 },{timestamps: true})

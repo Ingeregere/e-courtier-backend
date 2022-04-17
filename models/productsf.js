@@ -33,8 +33,13 @@ numberOfPiece: {
     trim: true,
     required: true,
 },
-toilette: {
+bathroom: {
     type: String,
+    trim: true,
+    required: true,
+},
+bathroomNumber: {
+    type: Number,
     trim: true,
     required: true,
 },
@@ -66,14 +71,23 @@ price: {
 advance: {
     type: String,
     trim: true,
-    // required: true,
 }, 
 typeOfProduct: {
     type: String,
     trim: true,
     required: true,
 },
-address: {
+province: {
+    type: String,
+    trim: true,
+    required: true,
+},
+municipality: {
+    type: String,
+    trim: true,
+    required: true,
+},
+district: {
     type: String,
     trim: true,
     required: true,
@@ -82,6 +96,11 @@ description: {
     type: String,
     trim: true,
     required: true,
+},
+documentTPO: {
+    type: String,
+    trim: true,
+    // required: true,
 },
 photo: {
     data: Buffer,
@@ -113,7 +132,12 @@ status: {
     enum: ['active','deleted','location','buy'],
     default: 'active', // sinon il ne peut se connecter. Donc si son statut == active il peut se connecter
     required: true
-}
+},
+views: {
+    type: Number,
+    trim: true, 
+    default:0
+},
 },{ timestamps: true })
 
 module.exports = mongoose.model('ProductImmobilier',ProductSchema)
