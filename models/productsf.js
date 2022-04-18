@@ -16,7 +16,7 @@ undercategory: {
 yearOfConstruction: {  
     type: Number,
     trim: true,
-    required: true,
+    // required: true,
 },
 statusOfHouse: {
     type: String,
@@ -31,37 +31,37 @@ area: {
 numberOfPiece: {
     type: Number,
     trim: true,
-    required: true,
+    // required: true,
 },
 bathroom: {
     type: String,
     trim: true,
-    required: true,
+    // required: true,
 },
 bathroomNumber: {
     type: Number,
     trim: true,
-    required: true,
+    // required: true,
 },
 watterAndElectric: {
     type: String,
     trim: true,
-    required: true,
+    // required: true,
 },
 apartment: {
     type: String,
     trim: true,
-    required: true,
+    // required: true,
 },
 cuisine: {
     type: String,
     trim: true,
-    required: true,
+    // required: true,
 },
 typeOfPavement: {
     type: String,
     trim: true,
-    required: true,
+    // required: true,
 },
 price: {
     type: Number,
@@ -109,17 +109,19 @@ photo: {
 slide1: {
     data: Buffer, 
     contentType: String
-}, slide2: {
+}, 
+slide2: {
     data: Buffer,
     contentType: String
-},slide3: {
+},
+slide3: {
     data: Buffer,
     contentType: String
 },
 userinfo:{ 
     type: ObjectId,
     ref: 'Users', //reference sur categorie
-    // required: true,
+    required: true,
 },
 posted: {
     type: String,

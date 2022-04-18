@@ -58,10 +58,6 @@ exports.addProduct = (req,res)=>{
         return  res.status(400).json({ 
         error:`Le champ catégorie de produit est requis`
         })
-    }if(!yearOfConstruction){
-        return  res.status(400).json({ 
-        error:`Le champ année de fabrication de produit est requis`
-        })
     }if(!statusOfHouse){  
         return  res.status(400).json({ 
         error:`Le champ statut de produit est requis`
@@ -69,42 +65,6 @@ exports.addProduct = (req,res)=>{
     }if(!area){
         return  res.status(400).json({ 
         error:`Le champ Surface de produit est requis`   
-        })
-    }if(!numberOfPiece){
-        return  res.status(400).json({ 
-        error:`Le champ nombres de pièces de produit est requis`
-        })
-    }if(!bathroom){
-        return  res.status(400).json({ 
-        error:`Le champ salle de bain est requis`
-        })
-    }if(!bathroomNumber){
-        return  res.status(400).json({ 
-        error:`Le champ nombre  des salles de bain est requis`
-        })
-    }if(!watterAndElectric){
-        return  res.status(400).json({ 
-        error:`Le champ l'eau et électricité est requis`
-        })
-    }if(!apartment){
-        return  res.status(400).json({ 
-        error:`Le champ appartement est requis`
-        })
-    }if(!cuisine){
-        return  res.status(400).json({ 
-        error:`Le champ cuisine est requis`
-        })
-    }if(!typeOfPavement){
-        return  res.status(400).json({ 
-        error:`Le champ type de pavement est requis`
-        })
-    }if(!price){
-        return  res.status(400).json({ 
-        error:`Le champ prix est requis`
-        })
-    }if(!advance){
-        return  res.status(400).json({ 
-        error:`Le champ nombre mois de garanti est requis`
         })
     }if(!typeOfProduct){
         return  res.status(400).json({ 
