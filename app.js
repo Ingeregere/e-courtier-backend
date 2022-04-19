@@ -39,14 +39,18 @@ app.use(cors()) // used to connect
 
 //====================Routes middleware============================
 
-app.use('/api', authRoutes);
-app.use('/api', userRoutes);
-app.use('/api', categoryRoutes);
-app.use('/api', underCategoryRoutes);
-app.use('/api', messagesRoutes); 
-app.use('/api', messageReturnRoutes);
+app.use('/', authRoutes);
+app.use('/', userRoutes);
+app.use('/', categoryRoutes);
+app.use('/', underCategoryRoutes);
+app.use('/', messagesRoutes); 
+app.use('/', messageReturnRoutes);
 app.use('/',productRoutes)
-app.use('/api',productpRoutes)
+app.use('/',productpRoutes)
+
+// app.get('/', function (req, res) { 
+//     res.send('Hello E-courtier'); 
+// });
 
 const port =  process.env.PORT || 9000
 

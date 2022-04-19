@@ -477,14 +477,10 @@ exports.listProductUnposted = (req,res) =>{
 exports.listAllPropsProduct=(req,res)=>{
     // const id = req.params.id
     Product.find({$and:[{"status":{$eq:"active"}},{"posted":{$eq:"published"}}]})
-           .select("-slide1")
-           .select("-slide2")
-           .select("-slide3")
-           .select("-photo")
            .exec((err,product)=>{
                if(err){
                  return res.status(400).json({
-                   error: "Le produit est introuvable"
+                   error: "Aucun produit trouve"
   
                  }) 
                }
