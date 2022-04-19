@@ -14,6 +14,7 @@ const userRoutes = require('./routes/user')
 const categoryRoutes = require('./routes/category')
 const underCategoryRoutes = require('./routes/underCategory')
 const productRoutes  = require('./routes/product')
+const productpRoutes  = require('./routes/productprops')
 const messagesRoutes = require('./routes/messages')
 const messageReturnRoutes = require('./routes/messagereturn')
 
@@ -45,6 +46,7 @@ app.use('/api', underCategoryRoutes);
 app.use('/api', messagesRoutes); 
 app.use('/api', messageReturnRoutes);
 app.use('/api',productRoutes)
+app.use('/api',productpRoutes)
 
 const port =  process.env.PORT || 9000
 
