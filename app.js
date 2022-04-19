@@ -45,7 +45,7 @@ app.use('/api', categoryRoutes);
 app.use('/api', underCategoryRoutes);
 app.use('/api', messagesRoutes); 
 app.use('/api', messageReturnRoutes);
-app.use('/api',productRoutes)
+app.use('/',productRoutes)
 app.use('/api',productpRoutes)
 
 const port =  process.env.PORT || 9000
