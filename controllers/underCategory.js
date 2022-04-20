@@ -118,8 +118,8 @@ exports.listAll = (req,res) =>{
     let sortBy = req.query.sortBy ? req.query.sortBy : '_id'
     let limit = req.query.limit ? parseInt(req.query.limit) : 4
 
-    UnderCategory.find()
-        .select("-photo")
+    UnderCategory.find({"status":{$eq:"active"}})
+        .select("-photo") 
         .populate('Category')
         .sort([[sortBy,order]])
         .limit(limit)

@@ -16,7 +16,7 @@ undercategory: {
 yearOfConstruction: {  
     type: Number,
     trim: true,
-    required: true,
+    // required: true,
 },
 statusOfHouse: {
     type: String,
@@ -31,32 +31,37 @@ area: {
 numberOfPiece: {
     type: Number,
     trim: true,
-    required: true,
+    // required: true,
 },
-toilette: {
+bathroom: {
     type: String,
     trim: true,
-    required: true,
+    // required: true,
+},
+bathroomNumber: {
+    type: Number,
+    trim: true,
+    // required: true,
 },
 watterAndElectric: {
     type: String,
     trim: true,
-    required: true,
+    // required: true,
 },
 apartment: {
     type: String,
     trim: true,
-    required: true,
+    // required: true,
 },
 cuisine: {
     type: String,
     trim: true,
-    required: true,
+    // required: true,
 },
 typeOfPavement: {
     type: String,
     trim: true,
-    required: true,
+    // required: true,
 },
 price: {
     type: Number,
@@ -66,14 +71,23 @@ price: {
 advance: {
     type: String,
     trim: true,
-    // required: true,
 }, 
 typeOfProduct: {
     type: String,
     trim: true,
     required: true,
 },
-address: {
+province: {
+    type: String,
+    trim: true,
+    required: true,
+},
+municipality: {
+    type: String,
+    trim: true,
+    required: true,
+},
+district: {
     type: String,
     trim: true,
     required: true,
@@ -83,6 +97,11 @@ description: {
     trim: true,
     required: true,
 },
+documentTPO: {
+    type: String,
+    trim: true,
+    // required: true,
+},
 photo: {
     data: Buffer,
     contentType: String
@@ -90,17 +109,19 @@ photo: {
 slide1: {
     data: Buffer, 
     contentType: String
-}, slide2: {
+}, 
+slide2: {
     data: Buffer,
     contentType: String
-},slide3: {
+},
+slide3: {
     data: Buffer,
     contentType: String
 },
 userinfo:{ 
     type: ObjectId,
     ref: 'Users', //reference sur categorie
-    // required: true,
+    required: true,
 },
 posted: {
     type: String,
@@ -113,7 +134,12 @@ status: {
     enum: ['active','deleted','location','buy'],
     default: 'active', // sinon il ne peut se connecter. Donc si son statut == active il peut se connecter
     required: true
-}
+},
+views: {
+    type: Number,
+    trim: true, 
+    default:0
+},
 },{ timestamps: true })
 
 module.exports = mongoose.model('ProductImmobilier',ProductSchema)

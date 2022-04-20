@@ -21,16 +21,22 @@ const {
     deletedProduct,
     listProductUnposted,
     listProductDel,
+    viewProduct,
+    listAllPropsProduct
 } = require('../controllers/product')
-const { requireSignin, isAuth, isAdmin } = require('../controllers/auth')
+const { requireSignin, isAuth, isAdmin, isProps } = require('../controllers/auth')
 const { userById } = require('../controllers/user')
 
 router.post('/add/product/:userId/', requireSignin, isAuth, isAdmin, addProduct)
+router.post('/add/product/:userId/', requireSignin, isAuth, isProps, addProduct)
 //
 router.get('/product/:productId', readProduct)
 router.put('/product/update/:productId/:userId', requireSignin, isAuth, isAdmin, update)
 router.delete('/product/:productId/:userId', requireSignin, isAuth, isAdmin, remove)
 router.get('/products', list)  
+//
+router.get("/listproduct", listAllPropsProduct)
+//
 router.get('/product/related/:productId', listRelated)   
 router.get('/product/categories', listUnderCategories)
 router.post('/products/by/search/', listBySearchProduct)
@@ -42,8 +48,9 @@ router.get("/product/slide3/:productId", slide3)
 router.put('/product/postedprod/:id/:userId', requireSignin, isAuth, isAdmin, postedProduct)
 router.put('/product/activepro/:id/:userId', requireSignin, isAuth, isAdmin, activeProduct)
 router.put('/product/deletepro/:id/:userId', requireSignin, isAuth, isAdmin, deletedProduct)
+router.put('/product/viewproduct/:id/:userId', requireSignin, isAuth,viewProduct)
 router.get("/productunposted", listProductUnposted)
-router.get("/productdel", listProductDel)
+router.get("/productdel", listProductDel) 
 
 
 router.param('userId', userById)

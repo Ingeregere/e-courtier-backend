@@ -35,7 +35,8 @@ exports.addProduct = (req,res)=>{
          statusOfHouse,
          area,
          numberOfPiece,
-         toilette,
+         bathroom,
+         bathroomNumber,
          watterAndElectric,
          apartment,
          cuisine,
@@ -43,7 +44,9 @@ exports.addProduct = (req,res)=>{
          price,
          advance,
          typeOfProduct,
-         address,
+         province,
+         municipality,
+         district,
          description,
          userinfo,
         } = fields
@@ -55,10 +58,6 @@ exports.addProduct = (req,res)=>{
         return  res.status(400).json({ 
         error:`Le champ catégorie de produit est requis`
         })
-    }if(!yearOfConstruction){
-        return  res.status(400).json({ 
-        error:`Le champ année de fabrication de produit est requis`
-        })
     }if(!statusOfHouse){  
         return  res.status(400).json({ 
         error:`Le champ statut de produit est requis`
@@ -67,45 +66,21 @@ exports.addProduct = (req,res)=>{
         return  res.status(400).json({ 
         error:`Le champ Surface de produit est requis`   
         })
-    }if(!numberOfPiece){
-        return  res.status(400).json({ 
-        error:`Le champ nombres de pièces de produit est requis`
-        })
-    }if(!toilette){
-        return  res.status(400).json({ 
-        error:`Le champ toilette est requis`
-        })
-    }if(!watterAndElectric){
-        return  res.status(400).json({ 
-        error:`Le champ l'eau et électricité est requis`
-        })
-    }if(!apartment){
-        return  res.status(400).json({ 
-        error:`Le champ appartement est requis`
-        })
-    }if(!cuisine){
-        return  res.status(400).json({ 
-        error:`Le champ cuisine est requis`
-        })
-    }if(!typeOfPavement){
-        return  res.status(400).json({ 
-        error:`Le champ type de pavement est requis`
-        })
-    }if(!price){
-        return  res.status(400).json({ 
-        error:`Le champ prix est requis`
-        })
-    }if(!advance){
-        return  res.status(400).json({ 
-        error:`Le champ nombre mois de garanti est requis`
-        })
     }if(!typeOfProduct){
         return  res.status(400).json({ 
         error:`Le champ type de produit est requis`
         })
-    }if(!address){
+    }if(!province){
         return  res.status(400).json({ 
-        error:`Le champ adresse est requis`
+        error:`Le champ province est requis`
+        })
+    }if(!municipality){
+        return  res.status(400).json({ 
+        error:`Le champ commune est requis`
+        })
+    }if(!district){
+        return  res.status(400).json({ 
+        error:`Le champ quartier est requis`
         })
     }if(!description){
         return res.status(400).json({
@@ -249,10 +224,10 @@ exports.update = (req,res) =>{
     })
 }
 
-
+//
 exports.listRelated = (req,res) =>{
     let limit = req.query.limit ? parseInt(req.query.limit) : 100
-    Product.find({_id: {$ne: req.product},undercategory: req.product.undercategory})
+    Product.find({$and:[{"status":{$eq:"active"}},{"posted":{$eq:"published"}},{_id: {$ne: req.product},undercategory: req.product.undercategory}]})
         .select("-slide1")
         .select("-slide2")
         .select("-slide3")
@@ -426,7 +401,7 @@ exports.deletedProduct = (req,res)=>{
     const id = req.params.id 
     Product.updateOne(
         { _id: id },
-        { $set: {"status": "deleted"}},
+        {$set:{"status": "deleted","posted":"unposted"}},
         (err,product)=>{
             if(err){
                 res.status(400).json({ 
@@ -480,3 +455,35 @@ exports.listProductUnposted = (req,res) =>{
              res.json(product)
          })
  }
+
+ //viewProduct
+ exports.viewProduct = (req,res)=>{
+    const id = req.params.id 
+    Product.updateOne(
+        { _id: id },
+        { $set: {"views": views+1}},
+        (err,product)=>{
+            if(err){
+                res.status(400).json({ 
+                    error:"vous n'êtes pas autorisé à éffectuer cette action"
+                })
+            } 
+            res.json(product)
+
+        }
+     )
+}
+// All product by user props
+exports.listAllPropsProduct=(req,res)=>{
+    // const id = req.params.id
+    Product.find({$and:[{"status":{$eq:"active"}},{"posted":{$eq:"published"}}]})
+           .exec((err,product)=>{
+               if(err){
+                 return res.status(400).json({
+                   error: "Aucun produit trouve"
+  
+                 }) 
+               }
+               res.json(product)
+           })
+   }

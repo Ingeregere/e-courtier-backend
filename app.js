@@ -14,6 +14,7 @@ const userRoutes = require('./routes/user')
 const categoryRoutes = require('./routes/category')
 const underCategoryRoutes = require('./routes/underCategory')
 const productRoutes  = require('./routes/product')
+const productpRoutes  = require('./routes/productprops')
 const messagesRoutes = require('./routes/messages')
 const messageReturnRoutes = require('./routes/messagereturn')
 
@@ -38,18 +39,23 @@ app.use(cors()) // used to connect
 
 //====================Routes middleware============================
 
-app.use('/api', authRoutes);
-app.use('/api', userRoutes);
-app.use('/api', categoryRoutes);
-app.use('/api', underCategoryRoutes);
-app.use('/api', messagesRoutes); 
-app.use('/api', messageReturnRoutes);
-app.use('/api',productRoutes)
+app.use('/', authRoutes);
+app.use('/', userRoutes);
+app.use('/', categoryRoutes);
+app.use('/', underCategoryRoutes);
+app.use('/', messagesRoutes); 
+app.use('/', messageReturnRoutes);
+app.use('/',productRoutes)
+app.use('/',productpRoutes)
+
+// app.get('/', function (req, res) { 
+//     res.send('Hello E-courtier'); 
+// });
 
 const port =  process.env.PORT || 9000
 
 app.listen(port,() => {
-    console.log(`Serveur est lancé sur le PORT ${port}.`)
+    console.log(`Serveur e-courtier est lancé sur le PORT ${port}.`)
 })
 
      

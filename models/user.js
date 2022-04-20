@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
         required: true,
         maxlength: 32
     },
-    firstname: { //Le prenom est le nom qu'on peut ajouter sur le profil parce qu'avec tout les noms entier vont pas convenir avec ce dernier
+    firstname: { 
         type: String,
         trim: true,
         required: true,

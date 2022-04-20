@@ -83,8 +83,17 @@ exports.isAuth = (req,res,next) =>{
 exports.isAdmin = (req, res, next) =>{ 
     if(req.profile.role != "ADMIN") {
         return res.status(403).json({
-            error: "Vous n'êtes pas l'Administrateur! accès refusé "
+            error: "Vous n'êtes pas Administrateur! accès refusé "
         })
     }  
+    next()
+}
+
+exports.isProps= (req,res,next)=>{
+    if(req.profile.role !="PROPS"){
+      return res.status(403).json({
+            error:"Vous n'êtes pas Proprietaire ! accès refusé."
+      })
+    }
     next()
 }
