@@ -39,14 +39,14 @@ app.use(cors()) // used to connect
 
 //====================Routes middleware============================
 
-app.use('/api', authRoutes);
+app.use('/api', authRoutes); 
 app.use('/api', userRoutes);
 app.use('/api', categoryRoutes);
 app.use('/api', underCategoryRoutes);
 app.use('/api', messagesRoutes); 
 app.use('/api', messageReturnRoutes);
 app.use('/api',productRoutes)
-app.use('/api',productpRoutes) 
+
 
 // app.get('/', function (req, res) { 
 //     res.send('Hello E-courtier'); 
