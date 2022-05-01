@@ -22,7 +22,9 @@ const {
     listProductUnposted,
     listProductDel,
     viewProduct,
-    listAllPropsProduct
+    listAllPropsProduct,
+    notAvailableList,
+    notAvailable
 } = require('../controllers/product')
 const { requireSignin, isAuth, isAdmin, isProps } = require('../controllers/auth')
 const { userById } = require('../controllers/user')
@@ -35,7 +37,9 @@ router.put('/product/update/:productId/:userId', requireSignin, isAuth, isAdmin,
 router.delete('/product/:productId/:userId', requireSignin, isAuth, isAdmin, remove)
 router.get('/products', list)  
 //
-router.get("/listproduct", listAllPropsProduct)
+router.get("/listproduct/:id", listAllPropsProduct)
+router.get("/notAvailableProduct",notAvailableList)
+router.put("/notAvailable/:id/:userId",notAvailable,isProps)
 //
 router.get('/product/related/:productId', listRelated)   
 router.get('/product/categories', listUnderCategories)

@@ -1,5 +1,5 @@
 exports.userSignupValidator = (req, res, next) => {
-    req.check('name', 'Le nom est obligatoire').notEmpty()
+    req.check('firstname', 'Le nom est obligatoire').notEmpty()
     req.check('firstname', 'Le prenom est obligatoire').notEmpty()
     
     req.check('email', 'Email recommande').notEmpty()
@@ -24,7 +24,7 @@ exports.userSignupValidator = (req, res, next) => {
         return res.status(400).json({ error: firstError })   
     }
     next()
-}
+} 
 
 
 exports.userSigninValidator = (req, res, next) => {
@@ -37,7 +37,7 @@ exports.userSigninValidator = (req, res, next) => {
     req.check('password', 'Le password est obligatoire').notEmpty()
     const errors = req.validationErrors()
     if (errors) {
-        const firstError = errors.map(error => error.msg)[0]
+        const firstError = errors.map(error => error.msg)[0] 
         return res.status(400).json({ error: firstError })
     }
     next()

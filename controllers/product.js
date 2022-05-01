@@ -475,8 +475,13 @@ exports.listProductUnposted = (req,res) =>{
 }
 // All product by user props
 exports.listAllPropsProduct=(req,res)=>{
-    // const id = req.params.id
-    Product.find({$and:[{"status":{$eq:"active"}},{"posted":{$eq:"published"}}]})
+    const id = req.params.id
+    Product.find({$and:[{"userinfo":{$eq:id}},
+    {"status":{$eq:"active"}},{"posted":{$eq:"published"}},
+    {"statusOfHouse":{$eq:"disponible"}}]})
+           .select("-slide1")
+           .select("-slide2")
+           .select("-slide3")
            .exec((err,product)=>{
                if(err){
                  return res.status(400).json({
@@ -487,3 +492,37 @@ exports.listAllPropsProduct=(req,res)=>{
                res.json(product)
            })
    }
+//
+exports.notAvailableList=(req,res)=>{
+    const id = req.params.id
+    Product.find({"statusOfHouse":{$eq:"non-disponible"}})
+           .select("-slide1")
+           .select("-slide2")
+           .select("-slide3")
+           .exec((err,product)=>{
+               if(err){
+                 return res.status(400).json({
+                   error: "Aucun produit trouve"
+  
+                 }) 
+               }
+               res.json(product)
+           })
+   }
+//
+ exports.notAvailable = (req,res)=>{
+    const id = req.params.id 
+    Product.updateOne(
+        { _id: id },
+        { $set: {"statusOfHouse": "non-disponible"}},
+        (err,product)=>{
+            if(err){
+                res.status(400).json({ 
+                    error:"vous n'êtes pas autorisé à éffectuer cette action"
+                })
+            } 
+            res.json(product)
+
+        }
+     )
+}  
