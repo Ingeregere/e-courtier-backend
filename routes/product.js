@@ -24,7 +24,8 @@ const {
     viewProduct,
     listAllPropsProduct,
     notAvailableList,
-    notAvailable
+    notAvailable,
+    listAllProductByIdUnderCategory
 } = require('../controllers/product')
 const { requireSignin, isAuth, isAdmin, isProps } = require('../controllers/auth')
 const { userById } = require('../controllers/user')
@@ -55,6 +56,7 @@ router.put('/product/deletepro/:id/:userId', requireSignin, isAuth, isAdmin, del
 router.put('/product/viewproduct/:id',viewProduct)
 router.get("/productunposted", listProductUnposted)
 router.get("/productdel", listProductDel) 
+router.get("/productsundercategory/:id",listAllProductByIdUnderCategory)
 
 
 router.param('userId', userById)

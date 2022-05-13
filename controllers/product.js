@@ -443,8 +443,12 @@ exports.listProductUnposted = (req,res) =>{
  
  //Find product by id under category
  exports.listAllProductByIdUnderCategory=(req,res)=>{
-  const Id = req.params.Id
-  Product.find({"undercategory":{$eq:Id}})
+  const id = req.params.id
+  Product.find({"undercategory":{$eq:id}})
+         .select('-photo')
+         .select('-slide1')
+         .select('-slide2')
+         .select('-slide3')
          .exec((err,product)=>{
              if(err){
                return res.status(400).json({
