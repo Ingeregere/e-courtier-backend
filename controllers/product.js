@@ -457,14 +457,15 @@ exports.listProductUnposted = (req,res) =>{
  }
 
  //viewProduct
- exports.viewProduct = (req,res)=>{
+ exports.viewProduct = (req,res)=>{ 
     const id = req.params.id 
+    const v = 101
     Product.updateOne(
         { _id: id },
-        { $set: {"views": views+1}},
+        { $set: {"views":v+1}}, 
         (err,product)=>{
             if(err){
-                res.status(400).json({ 
+                res.status(400).json({  
                     error:"vous n'êtes pas autorisé à éffectuer cette action"
                 })
             } 
@@ -526,3 +527,20 @@ exports.notAvailableList=(req,res)=>{
         }
      )
 }  
+
+exports.showContract = (req,res)=>{
+    const id = req.params.id 
+    Product.updateOne(
+        { _id: id },
+        { $set: {"statusOfHouse": "non-disponible"}},
+        (err,product)=>{
+            if(err){
+                res.status(400).json({ 
+                    error:"vous n'êtes pas autorisé à éffectuer cette action"
+                })
+            } 
+            res.json(product)
+
+        }
+     )
+} 

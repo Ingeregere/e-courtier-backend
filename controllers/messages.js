@@ -72,3 +72,16 @@ exports.readMessages = (req,res)=>{
         }
      )
 }
+
+exports.listMessageProps = (req,res) =>{ 
+    Product.find({"product":{$eq:"626fe22555ac8423f09ed6fb"}})
+           .exec((err,category) => {
+        if(err) {
+            return res.status(400).json({
+                error: "Il n'y a pas des données"
+            })
+        }
+        
+        res.json(category)
+    })
+ }

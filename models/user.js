@@ -57,6 +57,12 @@ const userSchema = new mongoose.Schema({
     photo : {
         data : Buffer,
         contentType : String
+    },
+    contract:{
+        type: String,
+        enum: ['accept','refuse'],
+        default: 'refuse', // sinon il ne peut se connecter. Donc si son statut == active il peut se connecter
+        required: true
     } 
 
 },{timestamps: true}) 
@@ -85,7 +91,7 @@ userSchema.methods = {
         }catch(err){
             return ''
         }
-    }
+    } 
 }
 
 module.exports = mongoose.model("Users",userSchema)

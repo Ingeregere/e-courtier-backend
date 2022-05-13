@@ -175,3 +175,23 @@ exports.oneUser = (req,res) =>{
         res.json(user)
     })
 }
+
+/*-----*/
+exports.acceptContract  = (req,res)=>{
+    const id = req.params.id
+    User.updateOne(
+        { _id: id },
+        { $set: {"contract": "accept"} },
+        (err,user)=>{
+            if(err){
+                res.status(400).json({ 
+                    error:"vous n'êtes pas autorisé à effectuer cette action"
+                })
+            }
+            user.hashed_password=undefined
+            user.salt=undefined
+            res.json(user)
+
+        }
+     )
+} 
