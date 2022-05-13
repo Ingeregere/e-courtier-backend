@@ -29,9 +29,9 @@ const {
 const { requireSignin, isAuth, isAdmin, isProps } = require('../controllers/auth')
 const { userById } = require('../controllers/user')
 
-router.post('/add/product/:userId/', requireSignin, isAuth, isAdmin, addProduct)
+//('/add/product/:userId/', requireSignin, isAuth, isAdmin, addProduct)
 router.post('/add/product/:userId/', requireSignin, isAuth, isProps, addProduct)
-//
+
 router.get('/product/:productId', readProduct)
 router.put('/product/update/:productId/:userId', requireSignin, isAuth, isAdmin, update)
 router.delete('/product/:productId/:userId', requireSignin, isAuth, isAdmin, remove)
